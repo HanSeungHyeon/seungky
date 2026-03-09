@@ -1,0 +1,50 @@
+/* ─────────────────────────────────────────
+   Design System — Clean Editorial Portfolio
+   ───────────────────────────────────────── */
+:root {
+  --cream:   #FAF8F4;
+  --white:   #FFFFFF;
+  --ink:     #1A1814;
+  --ink-60:  #6B6760;
+  --ink-30:  #C4C2BE;
+  --indigo:  #2D3A8C;
+  --indigo-soft: #EEF0FA;
+  --sage:    #6B8F71;
+  --sage-soft: #EFF4F0;
+  --border:  #E8E5DF;
+
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-mono:    'DM Mono', 'Courier New', monospace;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+ul { list-style: none; }
+
+::selection {
+  background: var(--indigo);
+  color: white;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--ink-30); border-radius: 99px; }
