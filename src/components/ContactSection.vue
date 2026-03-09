@@ -182,7 +182,6 @@ onUnmounted(() => observer?.disconnect())
   transition: all .2s;
 }
 
-/* Code snippet */
 .code-snippet {
   background: var(--ink);
   border-radius: 14px;

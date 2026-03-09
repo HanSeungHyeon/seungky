@@ -31,7 +31,6 @@ import FooterBar       from './components/FooterBar.vue'
 
 main { flex: 1; }
 
-/* Dividers between sections */
 section + section {
   border-top: 1px solid var(--border);
 }

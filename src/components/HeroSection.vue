@@ -20,7 +20,6 @@
       <a href="#about" class="btn btn--ghost">더 알아보기 ↓</a>
     </div>
 
-    <!-- Floating label badges -->
     <div class="hero__badges">
       <div class="badge" style="--d:.1s">
         <span class="badge__num">5+</span>
@@ -36,7 +35,6 @@
       </div>
     </div>
 
-    <!-- Decorative rule -->
     <div class="hero__rule"></div>
   </section>
 </template>
@@ -153,7 +151,6 @@
   transform: translateY(-2px);
 }
 
-/* Badges */
 .hero__badges {
   position: absolute;
   right: 60px;

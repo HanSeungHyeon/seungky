@@ -46,7 +46,6 @@
         </div>
       </div>
 
-      <!-- Tag cloud -->
       <div class="tags">
         <span v-for="t in tags" :key="t" class="tag">{{ t }}</span>
       </div>
@@ -189,7 +188,6 @@ onUnmounted(() => observer?.disconnect())
   transition: width 1.4s var(--ease-out);
 }
 
-/* Tag cloud */
 .tags {
   display: flex;
   flex-wrap: wrap;

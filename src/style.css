@@ -1,50 +1,31 @@
-/* ─────────────────────────────────────────
-   Design System — Clean Editorial Portfolio
-   ───────────────────────────────────────── */
-:root {
-  --cream:   #FAF8F4;
-  --white:   #FFFFFF;
-  --ink:     #1A1814;
-  --ink-60:  #6B6760;
-  --ink-30:  #C4C2BE;
-  --indigo:  #2D3A8C;
-  --indigo-soft: #EEF0FA;
-  --sage:    #6B8F71;
-  --sage-soft: #EFF4F0;
-  --border:  #E8E5DF;
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
-  --font-display: 'DM Serif Display', Georgia, serif;
-  --font-body:    'DM Sans', system-ui, sans-serif;
-  --font-mono:    'DM Mono', 'Courier New', monospace;
-
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #FAF8F4;
+  color: #1A1814;
   -webkit-font-smoothing: antialiased;
 }
 
-body {
-  font-family: var(--font-body);
-  background: var(--cream);
-  color: var(--ink);
-  line-height: 1.6;
-}
-
-a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
+img { max-width: 100%; display: block; }
 
-::selection {
-  background: var(--indigo);
-  color: white;
+:root {
+  --font-display: 'DM Serif Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --ink: #1A1814;
+  --ink-60: rgba(26, 24, 20, 0.6);
+  --ink-30: rgba(26, 24, 20, 0.3);
+  --white: #FFFFFF;
+  --cream: #FAF8F4;
+  --border: #E8E4DD;
+  --indigo: #2D3A8C;
+  --indigo-soft: #E8EAF6;
+  --sage: #6B8F71;
+  --sage-soft: #E8F0E9;
 }
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--cream); }
-::-webkit-scrollbar-thumb { background: var(--ink-30); border-radius: 99px; }

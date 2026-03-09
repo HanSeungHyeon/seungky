@@ -79,9 +79,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
-// ──────────────────────────────────────────────────
-const GITHUB_USERNAME = 'hanseunghyeon' // ← 여기에 GitHub 아이디 입력!
-// ──────────────────────────────────────────────────
+const GITHUB_USERNAME = 'hanseunghyeon'
 
 const sectionRef  = ref(null)
 const visible     = ref(false)
@@ -111,32 +109,6 @@ const featured = [
     link: '#',
     desc: 'Spring Boot 기반 AI 챗봇 백엔드. REST + WebSocket 하이브리드 아키텍처.',
     tags: ['Spring Boot', 'Java', 'PostgreSQL'],
-  },
-]
-
-const guideSteps = [
-  {
-    title: '저장소 이름을 특별하게',
-    desc: 'GitHub에서 새 저장소를 만들 때 이름을 YOUR_USERNAME.github.io 으로 지정하세요. 이 이름이 곧 URL이 됩니다.',
-  },
-  {
-    title: '빌드 후 업로드',
-    desc: 'npm run build 후 dist 폴더를 올리거나, 소스 전체를 올리고 Pages에서 설정하세요.',
-    code: `npm run build\ngit init\ngit add .\ngit commit -m "feat: portfolio"\ngit remote add origin https://github.com/USERNAME/USERNAME.github.io.git\ngit push -u origin main`,
-  },
-  {
-    title: 'GitHub Pages 활성화',
-    desc: '저장소 → Settings → Pages → Source: Deploy from a branch → Branch: main → Save',
-  },
-  {
-    title: 'GITHUB_USERNAME 입력',
-    desc: 'src/components/ProjectsSection.vue 상단의 GITHUB_USERNAME 변수에 본인 GitHub 아이디를 입력하면 저장소가 자동으로 표시됩니다.',
-    code: `const GITHUB_USERNAME = 'YOUR_USERNAME' // ← 여기만 수정`,
-  },
-  {
-    title: '완료!',
-    desc: '5분 이내에 아래 주소에서 확인하세요.',
-    code: `https://YOUR_USERNAME.github.io`,
   },
 ]
 
@@ -246,7 +218,6 @@ onUnmounted(() => observer?.disconnect())
   letter-spacing: .05em;
 }
 
-/* Featured cards */
 .featured {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -319,7 +290,6 @@ onUnmounted(() => observer?.disconnect())
   letter-spacing: .03em;
 }
 
-/* Repos */
 .repos-block { margin-bottom: 64px; }
 
 .repos-header {
@@ -451,98 +421,9 @@ onUnmounted(() => observer?.disconnect())
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Deploy Guide */
-.guide {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 48px;
-  position: relative;
-  overflow: hidden;
-}
-
-.guide::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--indigo), var(--sage));
-}
-
-.guide__head { margin-bottom: 40px; }
-
-.guide__title {
-  font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 400;
-  color: var(--ink);
-  letter-spacing: -.01em;
-  margin-bottom: 6px;
-}
-
-.guide__sub {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--ink-60);
-  letter-spacing: .05em;
-}
-
-.guide__steps { display: grid; gap: 28px; list-style: none; }
-
-.guide__step {
-  display: grid;
-  grid-template-columns: 40px 1fr;
-  gap: 20px;
-  align-items: start;
-}
-
-.guide__step-num {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--indigo);
-  background: var(--indigo-soft);
-  border: 1px solid #c5cbeb;
-  width: 40px; height: 40px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.guide__step-body strong {
-  display: block;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 6px;
-}
-
-.guide__step-body p {
-  font-size: 13px;
-  color: var(--ink-60);
-  line-height: 1.65;
-  font-weight: 300;
-  margin-bottom: 10px;
-}
-
-.guide__code {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--indigo);
-  background: var(--cream);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 14px 18px;
-  overflow-x: auto;
-  line-height: 1.7;
-  white-space: pre;
-}
-
 @media (max-width: 900px) {
   .projects { padding: 80px 24px; }
   .featured { grid-template-columns: 1fr; }
   .projects__header { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .guide { padding: 32px 24px; }
 }
 </style>
