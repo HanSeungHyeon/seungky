@@ -10,7 +10,7 @@
             <em>현실로</em> 만듭니다.
           </h2>
           <p class="about__body">
-            안녕하세요, <strong>홍길동</strong>입니다. JavaScript와 Java를 중심으로
+            안녕하세요, <strong>한승현</strong>입니다. JavaScript와 Java를 중심으로
             프론트엔드부터 백엔드까지 폭넓게 다루는 풀스택 개발자입니다.
           </p>
           <p class="about__body">

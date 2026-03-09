@@ -1,6 +1,6 @@
 <template>
   <nav :class="['nav', { 'nav--scrolled': scrolled }]">
-    <a href="#home" class="nav__logo">홍길동</a>
+    <a href="#home" class="nav__logo">한승현</a>
     <ul class="nav__links">
       <li v-for="item in links" :key="item.id">
         <a :href="`#${item.id}`" :class="['nav__link', { active: active === item.id }]">
@@ -8,7 +8,7 @@
         </a>
       </li>
     </ul>
-    <a href="mailto:hello@example.com" class="nav__cta">연락하기</a>
+    <a href="mailto:tmdgus4720@naver.com" class="nav__cta">연락하기</a>
   </nav>
 </template>
 

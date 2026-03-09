@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="footer__inner">
-      <span class="footer__copy">© 2025 홍길동. Built with Vue 3</span>
+      <span class="footer__copy">© 2025 한승현. Built with Vue 3</span>
       <a href="#home" class="footer__top">맨 위로 ↑</a>
     </div>
   </footer>

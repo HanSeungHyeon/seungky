@@ -34,7 +34,7 @@
               <span class="code-snippet__file">contact.js</span>
             </div>
             <pre class="code-snippet__body"><span class="c-k">const</span> <span class="c-v">me</span> = {
-  <span class="c-p">name</span>:         <span class="c-s">'홍길동'</span>,
+  <span class="c-p">name</span>:         <span class="c-s">'한승현'</span>,
   <span class="c-p">role</span>:         <span class="c-s">'Full-Stack Dev'</span>,
   <span class="c-p">stack</span>:        [<span class="c-s">'JS'</span>, <span class="c-s">'Java'</span>, <span class="c-s">'Vue'</span>],
   <span class="c-p">open_to_work</span>: <span class="c-k">true</span>,
@@ -60,9 +60,9 @@ const sectionRef = ref(null)
 const visible = ref(false)
 
 const links = [
-  { icon: '✉', label: 'hello@example.com', href: 'mailto:hello@example.com' },
-  { icon: '⟨/⟩', label: 'github.com/YOUR_USERNAME', href: 'https://github.com/YOUR_USERNAME', external: true },
-  { icon: 'in', label: 'linkedin.com/in/YOUR_USERNAME', href: 'https://linkedin.com/in/YOUR_USERNAME', external: true },
+  { icon: '✉', label: 'tmdgus4720@naver.com', href: 'mailto:tmdgus4720@naver.com' },
+  { icon: '⟨/⟩', label: 'github.com/hanseunghyeon', href: 'https://github.com/hanseunghyeon', external: true },
+  { icon: 'V', label: 'velog.io/@tmdgus4720/posts', href: 'https://velog.io/@tmdgus4720/posts', external: true },
 ]
 
 let observer

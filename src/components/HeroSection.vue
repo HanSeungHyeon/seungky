@@ -6,7 +6,7 @@
     </div>
 
     <h1 class="hero__name">
-      <span class="hero__name-top">홍길동</span>
+      <span class="hero__name-top">한승현</span>
       <em class="hero__name-sub">Full-Stack</em>
     </h1>
 
@@ -22,11 +22,11 @@
 
     <div class="hero__badges">
       <div class="badge" style="--d:.1s">
-        <span class="badge__num">5+</span>
-        <span class="badge__label">년 경력</span>
+        <span class="badge__num">2021.05 ~</span>
+        <span class="badge__label">경력</span>
       </div>
       <div class="badge" style="--d:.2s">
-        <span class="badge__num">20+</span>
+        <span class="badge__num">{{ repoCount }}</span>
         <span class="badge__label">프로젝트</span>
       </div>
       <div class="badge" style="--d:.3s">
@@ -38,6 +38,23 @@
     <div class="hero__rule"></div>
   </section>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const repoCount = ref('...')
+
+onMounted(async () => {
+  try {
+    const res = await fetch('https://api.github.com/users/hanseunghyeon')
+    if (!res.ok) throw new Error()
+    const data = await res.json()
+    repoCount.value = data.public_repos
+  } catch {
+    repoCount.value = '-'
+  }
+})
+</script>
 
 <style scoped>
 .hero {
