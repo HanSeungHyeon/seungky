@@ -186,6 +186,15 @@ const sideProjects = [
       'Zoom 클론 코딩',
     ],
   },
+  {
+    name: 'selLF',
+    link: 'https://github.com/HanSeungHyeon/selLf',
+    desc: '24년도 포트폴리오 사이트',
+    tags: ['Spring Boot', 'PostgreSQL', 'Java'],
+    features: [
+      '24년도 포트폴리오 사이트',
+    ],
+  },
 ]
 
 function onKeydown(e) {
