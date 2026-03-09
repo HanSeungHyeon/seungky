@@ -1,8 +1,8 @@
 <template>
   <footer class="footer">
     <div class="footer__inner">
-      <span class="footer__copy">© 2025 한승현. Built with Vue 3</span>
-      <a href="#home" class="footer__top">맨 위로 ↑</a>
+      <span class="footer__copy">© 2026 한승현 Portfolio</span>
+      <a href="#home" class="footer__top">↑ Top</a>
     </div>
   </footer>
 </template>
@@ -10,11 +10,11 @@
 <style scoped>
 .footer {
   border-top: 1px solid var(--border);
-  padding: 28px 60px;
+  padding: 24px 32px;
 }
 
 .footer__inner {
-  max-width: 1300px;
+  max-width: 1100px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -22,24 +22,21 @@
 }
 
 .footer__copy {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--ink-60);
-  letter-spacing: .04em;
+  font-size: 13px;
+  color: var(--text-muted);
 }
 
 .footer__top {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--ink-60);
-  letter-spacing: .06em;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
   transition: color .2s;
 }
 
-.footer__top:hover { color: var(--indigo); }
+.footer__top:hover { color: var(--accent); }
 
 @media (max-width: 768px) {
-  .footer { padding: 24px; }
+  .footer { padding: 20px; }
   .footer__inner { flex-direction: column; gap: 8px; }
 }
 </style>

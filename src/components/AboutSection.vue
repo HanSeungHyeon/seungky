@@ -1,53 +1,43 @@
 <template>
   <section id="about" class="about" ref="sectionRef">
     <div :class="['about__inner', { visible }]">
-      <div class="sec-label">01 — About</div>
-
       <div class="about__grid">
         <div class="about__left">
-          <h2 class="about__title">
-            코드로 아이디어를<br>
-            <em>현실로</em> 만듭니다.
-          </h2>
-          <p class="about__body">
-            안녕하세요, <strong>한승현</strong>입니다. JavaScript와 Java를 중심으로
-            프론트엔드부터 백엔드까지 폭넓게 다루는 풀스택 개발자입니다.
-          </p>
-          <p class="about__body">
-            사용자가 진심으로 쓰고 싶어하는 서비스를 만드는 것이 목표입니다.
-            코드의 품질과 성능, 그리고 디테일을 중요하게 생각합니다.
-          </p>
+          <h3 class="col-title">PROFILE</h3>
+          <h2 class="profile__name">한승현</h2>
+
+          <ul class="profile__info">
+            <li>1996.04.18 / 서울시 동작구</li>
+            <li>tmdgus4720@naver.com</li>
+          </ul>
+
+          <div class="profile__edu">
+            <h3 class="col-title">EDUCATION</h3>
+            <ul class="edu-list">
+              <li v-for="edu in education" :key="edu.name" class="edu-item">
+                <span class="edu-name">{{ edu.name }}</span>
+                <span class="edu-year">{{ edu.year }}</span>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div class="about__right">
-          <div class="skills">
-            <div class="skills__title">기술 스택</div>
-            <div
-              v-for="skill in skills"
-              :key="skill.name"
-              class="skill"
-            >
-              <div class="skill__head">
+          <div class="right-block">
+            <h3 class="col-title">SKILL</h3>
+            <div class="skill-list">
+              <div v-for="skill in skills" :key="skill.name" class="skill">
                 <span class="skill__name">{{ skill.name }}</span>
-                <span class="skill__pct">{{ skill.pct }}%</span>
-              </div>
-              <div class="skill__track">
-                <div
-                  class="skill__fill"
-                  :style="{
-                    width: visible ? skill.pct + '%' : '0%',
-                    background: skill.color,
-                    transitionDelay: skill.delay
-                  }"
-                ></div>
+                <div class="skill__track">
+                  <div
+                    class="skill__fill"
+                    :style="{ width: visible ? skill.pct + '%' : '0%' }"
+                  ></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="tags">
-        <span v-for="t in tags" :key="t" class="tag">{{ t }}</span>
       </div>
     </div>
   </section>
@@ -59,19 +49,22 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const sectionRef = ref(null)
 const visible = ref(false)
 
-const skills = [
-  { name: 'JavaScript', pct: 92, color: 'var(--indigo)', delay: '0s' },
-  { name: 'Vue 3 / React', pct: 88, color: '#6B8F71', delay: '.1s' },
-  { name: 'Java', pct: 82, color: '#3A7CA5', delay: '.2s' },
-  { name: 'Node.js', pct: 76, color: 'var(--indigo)', delay: '.3s' },
-  { name: 'TypeScript', pct: 71, color: '#6B8F71', delay: '.4s' },
-  { name: 'Spring Boot', pct: 65, color: '#3A7CA5', delay: '.5s' },
+const education = [
+  { name: '한양사이버대학교 응용소프트웨어학과 졸업', year: '2026' },
+  { name: '연암대학교 동물보호계열 졸업', year: '2020' },
+  { name: '천안 두정고등학교 졸업', year: '2015' },
 ]
 
-const tags = [
-  'Vue 3', 'React', 'JavaScript', 'TypeScript', 'Java',
-  'Spring Boot', 'Node.js', 'REST API', 'Git', 'MySQL',
-  'PostgreSQL', 'MongoDB', 'Docker', 'CI/CD', 'Figma',
+const skills = [
+  { name: 'JAVA', pct: 95 },
+  { name: 'SPRING BOOT', pct: 90 },
+  { name: 'MYSQL', pct: 85 },
+  { name: 'JAVASCRIPT', pct: 82 },
+  { name: 'ORACLE', pct: 72 },
+  { name: 'NODE.JS', pct: 70 },
+  { name: 'VUE', pct: 70 },
+  { name: 'POSTGRESQL', pct: 65 },
+  { name: 'AWS', pct: 60 },
 ]
 
 let observer
@@ -87,97 +80,117 @@ onUnmounted(() => observer?.disconnect())
 
 <style scoped>
 .about {
-  padding: 120px 60px;
-  max-width: 1300px;
+  padding: 64px 32px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
 .about__inner {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity .8s var(--ease-out), transform .8s var(--ease-out);
+  transform: translateY(24px);
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
 }
-
-.about__inner.visible {
-  opacity: 1;
-  transform: none;
-}
-
-.sec-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--ink-60);
-  margin-bottom: 56px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.sec-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-  max-width: 80px;
-}
+.about__inner.visible { opacity: 1; transform: none; }
 
 .about__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
-  margin-bottom: 64px;
 }
 
-.about__title {
+.col-title {
   font-family: var(--font-display);
-  font-size: clamp(32px, 4vw, 52px);
-  font-weight: 400;
-  letter-spacing: -.02em;
-  line-height: 1.15;
-  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  margin-bottom: 24px;
+}
+
+/* ── Profile (Left) ── */
+.profile__name {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.profile__info {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   margin-bottom: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
 }
 
-.about__title em {
-  color: var(--indigo);
-  font-style: italic;
+.profile__info li {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
-.about__body {
-  font-size: 16px;
-  color: var(--ink-60);
-  line-height: 1.85;
-  font-weight: 300;
-  margin-bottom: 16px;
+/* Education */
+.edu-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.about__body strong { color: var(--ink); font-weight: 500; }
-
-.skills__title {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--ink-60);
-  margin-bottom: 28px;
-}
-
-.skill { margin-bottom: 20px; }
-
-.skill__head {
+.edu-item {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
+  align-items: center;
+  gap: 12px;
 }
 
-.skill__name { font-size: 14px; font-weight: 500; color: var(--ink); }
-.skill__pct  { font-family: var(--font-mono); font-size: 12px; color: var(--ink-60); }
+.edu-name {
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.edu-year {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* ── Right Column ── */
+.right-block {
+  margin-bottom: 40px;
+}
+.right-block:last-child { margin-bottom: 0; }
+
+/* Skill */
+.skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skill {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+  gap: 16px;
+}
+
+.skill__name {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
 
 .skill__track {
-  height: 2px;
-  background: var(--border);
+  height: 8px;
+  background: var(--border-light);
   border-radius: 99px;
   overflow: hidden;
 }
@@ -185,37 +198,16 @@ onUnmounted(() => observer?.disconnect())
 .skill__fill {
   height: 100%;
   border-radius: 99px;
-  transition: width 1.4s var(--ease-out);
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding-top: 48px;
-  border-top: 1px solid var(--border);
-}
-
-.tag {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--ink-60);
-  background: var(--white);
-  border: 1px solid var(--border);
-  padding: 5px 14px;
-  border-radius: 99px;
-  letter-spacing: .03em;
-  transition: all .18s;
-}
-
-.tag:hover {
-  background: var(--indigo-soft);
-  border-color: var(--indigo);
-  color: var(--indigo);
+  background: var(--accent);
+  transition: width 1.2s var(--ease);
 }
 
 @media (max-width: 900px) {
-  .about { padding: 80px 24px; }
-  .about__grid { grid-template-columns: 1fr; gap: 48px; }
+  .about { padding: 48px 20px; }
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+  .skill { grid-template-columns: 100px 1fr; }
 }
 </style>

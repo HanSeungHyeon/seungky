@@ -1,14 +1,19 @@
 <template>
   <nav :class="['nav', { 'nav--scrolled': scrolled }]">
-    <a href="#home" class="nav__logo">한승현</a>
-    <ul class="nav__links">
-      <li v-for="item in links" :key="item.id">
-        <a :href="`#${item.id}`" :class="['nav__link', { active: active === item.id }]">
-          {{ item.label }}
-        </a>
-      </li>
-    </ul>
-    <a href="mailto:tmdgus4720@naver.com" class="nav__cta">연락하기</a>
+    <div class="nav__inner">
+      <a href="#home" class="nav__logo">승카이</a>
+      <ul class="nav__links">
+        <li v-for="item in links" :key="item.id">
+          <a
+            :href="`#${item.id}`"
+            :class="['nav__link', { active: active === item.id }]"
+            @click="setActive(item.id)"
+          >
+            {{ item.label }}
+          </a>
+        </li>
+      </ul>
+    </div>
   </nav>
 </template>
 
@@ -19,26 +24,47 @@ const scrolled = ref(false)
 const active = ref('home')
 
 const links = [
-  { id: 'about',      label: 'About' },
-  { id: 'experience', label: '경력' },
-  { id: 'projects',   label: '프로젝트' },
-  { id: 'contact',    label: 'Contact' },
+  { id: 'about',    label: 'About' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'contact',  label: 'Contact' },
 ]
+
+function setActive(id) {
+  active.value = id
+}
 
 function onScroll() {
   scrolled.value = window.scrollY > 40
 
-  const sections = ['home', 'about', 'experience', 'projects', 'contact']
-  for (const id of [...sections].reverse()) {
+  const docEl = document.documentElement
+  const scrollBottom = window.innerHeight + window.scrollY
+  const docHeight = docEl.scrollHeight
+
+  // 거의 페이지 맨 아래에 도달했을 때는 무조건 contact 활성화
+  if (scrollBottom >= docHeight - 4) {
+    active.value = 'contact'
+    return
+  }
+
+  const sectionIds = ['home', 'about', 'projects', 'contact']
+  let current = 'home'
+
+  for (const id of sectionIds) {
     const el = document.getElementById(id)
-    if (el && window.scrollY >= el.offsetTop - 120) {
-      active.value = id
-      break
+    if (!el) continue
+    const rect = el.getBoundingClientRect()
+    if (rect.top <= 160) {
+      current = id
     }
   }
+
+  active.value = current
 }
 
-onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
+onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onScroll()
+})
 onUnmounted(() => window.removeEventListener('scroll', onScroll))
 </script>
 
@@ -47,82 +73,70 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
+  transition: all .3s var(--ease);
+}
+
+.nav__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 32px;
   display: flex;
   align-items: center;
-  gap: 48px;
-  padding: 28px 60px;
-  transition: padding .4s var(--ease-out), background .4s, box-shadow .4s;
+  gap: 40px;
+  transition: padding .3s var(--ease);
 }
 
 .nav--scrolled {
-  padding: 16px 60px;
-  background: rgba(250, 248, 244, 0.92);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 1px 0 var(--border);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav--scrolled .nav__inner {
+  padding: 14px 32px;
 }
 
 .nav__logo {
   font-family: var(--font-display);
-  font-size: 20px;
-  color: var(--ink);
-  letter-spacing: -.01em;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--accent);
   margin-right: auto;
+  letter-spacing: -0.02em;
 }
 
-.nav__links {
-  display: flex;
-  gap: 36px;
-}
+.nav__links { display: flex; gap: 32px; }
 
 .nav__link {
   font-size: 14px;
-  font-weight: 400;
-  color: var(--ink-60);
-  letter-spacing: .01em;
+  font-weight: 500;
+  color: var(--text-muted);
   transition: color .2s;
-  position: relative;
-}
-
-.nav__link::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 0; bottom: -3px;
-  height: 1px;
-  background: var(--indigo);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .25s var(--ease-out);
 }
 
 .nav__link:hover,
 .nav__link.active {
-  color: var(--ink);
-}
-
-.nav__link.active::after,
-.nav__link:hover::after {
-  transform: scaleX(1);
+  color: var(--text);
 }
 
 .nav__cta {
   font-size: 13px;
-  font-weight: 500;
-  color: var(--white);
-  background: var(--ink);
-  padding: 9px 20px;
-  border-radius: 6px;
-  letter-spacing: .01em;
-  transition: background .2s, transform .2s;
+  font-weight: 600;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+  padding: 7px 18px;
+  border-radius: 99px;
+  transition: all .2s;
 }
 
 .nav__cta:hover {
-  background: var(--indigo);
-  transform: translateY(-1px);
+  background: var(--accent);
+  color: white;
 }
 
 @media (max-width: 768px) {
-  .nav { padding: 20px 24px; gap: 24px; }
-  .nav--scrolled { padding: 14px 24px; }
+  .nav__inner { padding: 16px 20px; gap: 20px; }
+  .nav--scrolled .nav__inner { padding: 12px 20px; }
   .nav__links { display: none; }
 }
 </style>
