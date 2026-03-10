@@ -17,7 +17,10 @@
             class="feat-card"
             @click="openModal(p)"
           >
-            <h3 class="feat-card__name">{{ p.name }}</h3>
+            <div class="feat-card__header-top">
+              <h3 class="feat-card__name">{{ p.name }}</h3>
+              <span v-if="p.period" class="feat-card__period">{{ p.period }}</span>
+            </div>
             <p class="feat-card__desc">{{ p.desc }}</p>
             <div class="feat-card__tags">
               <span v-for="t in p.tags" :key="t" class="feat-card__tag">{{ t }}</span>
@@ -38,7 +41,10 @@
             class="feat-card"
             @click="openModal(p)"
           >
-            <h3 class="feat-card__name">{{ p.name }}</h3>
+            <div class="feat-card__header-top">
+              <h3 class="feat-card__name">{{ p.name }}</h3>
+              <span v-if="p.period" class="feat-card__period">{{ p.period }}</span>
+            </div>
             <p class="feat-card__desc">{{ p.desc }}</p>
             <div class="feat-card__tags">
               <span v-for="t in p.tags" :key="t" class="feat-card__tag">{{ t }}</span>
@@ -54,7 +60,10 @@
         <div v-if="modal" class="modal-overlay" @click.self="closeModal">
           <div class="modal">
             <button class="modal__close" @click="closeModal">✕</button>
-            <h2 class="modal__title">{{ modal.name }}</h2>
+            <div class="modal__header-top">
+              <h2 class="modal__title">{{ modal.name }}</h2>
+              <span v-if="modal.period" class="modal__period">{{ modal.period }}</span>
+            </div>
             <div class="modal__tags">
               <span v-for="t in modal.tags" :key="t" class="modal__tag">{{ t }}</span>
             </div>
@@ -101,21 +110,22 @@ function closeModal() {
 
 const companyProjects = [
   {
-    name: '외교부 정보보안 시스템',
+    name: '라포라포(RAPORAPO)',
+    period: '2025',
     link: '#',
-    desc: '보안장비, IP, 방화벽 등 외교부 내 정보보안 시스템 관리자 대시보드.',
-    tags: ['Spring', 'Maria DB', 'JSP', 'Linux',],
+    desc: '게이미케이션 교육 플랫폼.',
+    tags: ['Spring', 'Vue', 'Node.js', 'AWS'],
     features: [
-      '보안장비(pc, 복사기, 노트북) 관리',
-      'IP, 방화벽, 망점점, 차단사이트, pc신청',
-      '용역사업관리',
-      '알림메일 발송',
-      '결재 시스템 구축',
+      '콘텐츠 에디터',
+      'QR게임, OX게임, 주사위게임',
+      '관리자 대시보드',
+      'https://raporapo.com',
     ],
-    role: 'Spring 백엔드 아키텍처 설계 및 API 개발 담당',
+    role: '관리자 대시보드, 결제 기능, 기억력게임 개발',
   },
   {
     name: '코오롱 해킹메일 모의 훈련',
+    period: '2023',
     link: '#',
     desc: '코오롱 사내 해킹메일 관련 훈련, 교육, 시험 관리자 시스템.',
     tags: ['Spring', 'Oracle', 'Tomcat', 'Linux'],
@@ -129,20 +139,8 @@ const companyProjects = [
     role: '환경 구축, 솔루션 커스터마이징, 프로젝트 관리 담당',
   },
   {
-    name: '라포라포(RAPORAPO)',
-    link: '#',
-    desc: '게이미케이션 교육 플랫폼.',
-    tags: ['Spring', 'Vue', 'Node.js', 'AWS'],
-    features: [
-      '콘텐츠 에디터',
-      'QR게임, OX게임, 주사위게임',
-      '관리자 대시보드',
-      'https://raporapo.com',
-    ],
-    role: '관리자 대시보드, 결제 기능, 기억력게임 개발',
-  },
-  {
     name: '경동 ERP 시스템',
+    period: '2023',
     link: '#',
     desc: '경동 사내 ERP 시스템.',
     tags: ['웹스퀘어', 'ChartJs', 'JS', 'Oracle'],
@@ -154,31 +152,27 @@ const companyProjects = [
     ],
     role: '계획, 주문, 공급 관리 개발',
   },
+  {
+    name: '외교부 정보보안 시스템',
+    period: '2022',
+    link: '#',
+    desc: '보안장비, IP, 방화벽 등 외교부 내 정보보안 시스템 관리자 대시보드.',
+    tags: ['Spring', 'Maria DB', 'JSP', 'Linux',],
+    features: [
+      '보안장비(pc, 복사기, 노트북) 관리',
+      'IP, 방화벽, 망점점, 차단사이트, pc신청',
+      '용역사업관리',
+      '알림메일 발송',
+      '결재 시스템 구축',
+    ],
+    role: 'Spring 백엔드 아키텍처 설계 및 API 개발 담당',
+  },
 ]
 
 const sideProjects = [
   {
-    name: 'TPD (10초 그림일기)',
-    link: 'https://github.com/HanSeungHyeon/tpd',
-    desc: '10초 제한 시간 안에 그림을 그려 일기로 저장하는 웹 앱.',
-    tags: ['Nuxt 3', 'Vue 3', 'TypeScript'],
-    features: [
-      '10초 타이머 캔버스 드로잉 보드',
-      '그림 + 제목 + 내용을 포함한 일기 CRUD',
-    ],
-    role: '풀스택 기획/설계/개발 전체 담당 (1인 개발)',
-  },
-  {
-    name: 'zoom',
-    link: 'https://github.com/HanSeungHyeon/zoom',
-    desc: 'Zoom 클론 코딩',
-    tags: ['Nuxt 3', 'Vue 3', 'TypeScript'],
-    features: [
-      'Zoom 클론 코딩',
-    ],
-  },
-  {
     name: '와유(WAU)',
+    period: '2025',
     link: 'https://github.com/HanSeungHyeon/wau',
     desc: 'Zoom 클론 코딩',
     tags: ['Nuxt 3', 'Vue 3', 'TypeScript'],
@@ -188,12 +182,25 @@ const sideProjects = [
   },
   {
     name: 'selLF',
+    period: '2024',
     link: 'https://github.com/HanSeungHyeon/selLf',
     desc: '24년도 포트폴리오 사이트',
     tags: ['Spring Boot', 'PostgreSQL', 'Java'],
     features: [
       '24년도 포트폴리오 사이트',
     ],
+  },
+  {
+    name: 'TPD (10초 그림일기)',
+    period: '2023',
+    link: 'https://github.com/HanSeungHyeon/tpd',
+    desc: '10초 제한 시간 안에 그림을 그려 일기로 저장하는 웹 앱.',
+    tags: ['Nuxt 3', 'Vue 3', 'TypeScript'],
+    features: [
+      '10초 타이머 캔버스 드로잉 보드',
+      '그림 + 제목 + 내용을 포함한 일기 CRUD',
+    ],
+    role: '풀스택 기획/설계/개발 전체 담당 (1인 개발)',
   },
 ]
 
@@ -293,11 +300,13 @@ onUnmounted(() => {
   transform: translateY(-2px);
 }
 
+.feat-card__header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
 .feat-card__name {
   font-family: var(--font-display);
   font-size: 18px; font-weight: 600;
-  color: var(--text); margin-bottom: 8px;
+  color: var(--text); margin-bottom: 0;
 }
+.feat-card__period { font-size: 13px; color: var(--text-muted); font-family: var(--font-mono); }
 .feat-card__desc {
   font-size: 13px; color: var(--text-secondary);
   line-height: 1.6; margin-bottom: 20px;
@@ -354,13 +363,15 @@ onUnmounted(() => {
   color: var(--text);
 }
 
+.modal__header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
 .modal__title {
   font-family: var(--font-display);
   font-size: 28px;
   font-weight: 700;
   color: var(--text);
-  margin-bottom: 12px;
+  margin-bottom: 0;
 }
+.modal__period { font-size: 16px; color: var(--text-muted); font-family: var(--font-mono); }
 
 .modal__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
 .modal__tag {
