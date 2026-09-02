@@ -17,7 +17,7 @@
           유지보수와 확장이 쉬운 개발을 추구합니다.
         </p>
 
-        <div class="hero__scroll" @click="$emit('scrollTo', 'about')">
+        <div class="hero__scroll" @click="scrollToAbout">
           <span class="hero__scroll-text">Scroll</span>
           <span class="hero__scroll-line"></span>
         </div>
@@ -31,21 +31,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
 import profileImg from '../assets/profile.jpg'
 
-const repoCount = ref('...')
-
-onMounted(async () => {
-  try {
-    const res = await fetch('https://api.github.com/users/hanseunghyeon')
-    if (!res.ok) throw new Error()
-    const data = await res.json()
-    repoCount.value = data.public_repos
-  } catch {
-    repoCount.value = '-'
-  }
-})
+function scrollToAbout() {
+  document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
+}
 </script>
 
 <style scoped>
@@ -162,84 +152,6 @@ onMounted(async () => {
   100% { transform: translateX(100%); }
 }
 
-.hero__actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 36px;
-  animation: fadeUp .6s .3s var(--ease) both;
-}
-
-.hero__btn {
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px 28px;
-  border-radius: 99px;
-  transition: all .2s;
-  cursor: pointer;
-}
-
-.hero__btn--primary {
-  background: var(--accent);
-  color: white;
-}
-
-.hero__btn--primary:hover {
-  background: var(--accent-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.hero__btn--ghost {
-  color: var(--text-secondary);
-  border: 1.5px solid var(--border);
-  background: var(--surface);
-}
-
-.hero__btn--ghost:hover {
-  border-color: var(--text-muted);
-  color: var(--text);
-}
-
-.hero__stats {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  padding: 28px 36px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  max-width: max-content;
-  margin-top: 48px;
-  animation: fadeUp .6s .4s var(--ease) both;
-}
-
-.stat { text-align: center; }
-
-.stat__num {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-
-.stat__label {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.stat__divider {
-  width: 1px;
-  height: 32px;
-  background: var(--border);
-}
-
 .hero__photo {
   animation: fadeUp .6s .2s var(--ease) both;
 }
@@ -265,7 +177,5 @@ onMounted(async () => {
   }
   .hero__photo { order: -1; }
   .hero__photo-img { max-width: 260px; margin: 0 auto; }
-  .hero__stats { gap: 24px; padding: 20px 28px; }
-  .stat__num { font-size: 24px; }
 }
 </style>

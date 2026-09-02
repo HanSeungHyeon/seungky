@@ -15,7 +15,11 @@
             v-for="(p, i) in companyProjects"
             :key="'company-' + i"
             class="feat-card"
+            role="button"
+            tabindex="0"
             @click="openModal(p)"
+            @keydown.enter="openModal(p)"
+            @keydown.space.prevent="openModal(p)"
           >
             <div class="feat-card__header-top">
               <h3 class="feat-card__name">{{ p.name }}</h3>
@@ -39,7 +43,11 @@
             v-for="(p, i) in sideProjects"
             :key="'side-' + i"
             class="feat-card"
+            role="button"
+            tabindex="0"
             @click="openModal(p)"
+            @keydown.enter="openModal(p)"
+            @keydown.space.prevent="openModal(p)"
           >
             <div class="feat-card__header-top">
               <h3 class="feat-card__name">{{ p.name }}</h3>
@@ -58,8 +66,8 @@
     <Teleport to="body">
       <Transition name="modal">
         <div v-if="modal" class="modal-overlay" @click.self="closeModal">
-          <div class="modal">
-            <button class="modal__close" @click="closeModal">✕</button>
+          <div class="modal" role="dialog" aria-modal="true" :aria-label="modal.name">
+            <button class="modal__close" aria-label="닫기" @click="closeModal">✕</button>
             <div class="modal__header-top">
               <h2 class="modal__title">{{ modal.name }}</h2>
               <span v-if="modal.period" class="modal__period">{{ modal.period }}</span>
@@ -81,7 +89,7 @@
             </div>
             <div class="modal__footer">
               <a v-if="modal.link && modal.link !== '#'" :href="modal.link" target="_blank" class="modal__btn">
-                GitHub에서 보기 →
+                {{ modal.link.includes('github.com') ? 'GitHub에서 보기 →' : '프로젝트 보기 →' }}
               </a>
             </div>
           </div>
@@ -171,14 +179,45 @@ const companyProjects = [
 
 const sideProjects = [
   {
+    name: '미니언(MINION)',
+    period: '2026',
+    link: 'https://minion.fan',
+    desc: 'LCK 경기 일정·기록부터 팬 소통까지 한곳에 모은 e스포츠 팬 커뮤니티 플랫폼. 웹과 앱을 함께 운영하는 멀티 플랫폼 서비스입니다.',
+    tags: ['Next.js', 'React', 'TypeScript', 'Supabase', 'Expo'],
+    features: [
+      'LCK 경기 일정·플레이오프 대진표·승부 예측 제공',
+      '선수/챔피언 통계 및 POM(Player of the Match) 하이라이트',
+      '팬톡 게시판과 10개 팀별 팬 채널 커뮤니티 운영',
+      '국내 매체 e스포츠 뉴스 및 경기 하이라이트 영상 아카이빙',
+      'Supabase 기반 데이터 관리와 웹/앱 공통 운영 구조 설계',
+    ],
+    role: '기획·디자인·프론트엔드 개발을 맡아 웹/앱 동시 런칭까지 참여',
+  },
+  {
+    name: 'DA (detail-auto)',
+    period: '2026',
+    link: 'https://github.com/HanSeungHyeon/detail-auto',
+    desc: 'AI가 상품 정보를 바탕으로 커머스 상세페이지를 자동으로 생성해주는 서비스.',
+    tags: ['Next.js', 'React 19', 'TypeScript', 'Supabase', 'Gemini'],
+    features: [
+      'AI(Gemini · Groq) 기반 상품 상세페이지 자동 생성',
+      'shadcn/ui · TailwindCSS 기반 반응형 UI 구성',
+      'Supabase 인증/데이터 관리, Bootpay 결제 연동',
+    ],
+    role: '기획, 프론트엔드 개발, AI 연동까지 1인 개발',
+  },
+  {
     name: '와유(WAU)',
     period: '2025',
     link: 'https://github.com/HanSeungHyeon/wau',
-    desc: 'Zoom 클론 코딩',
-    tags: ['Nuxt 3', 'Vue 3', 'TypeScript'],
+    desc: '모바일 청첩장 웹 프로젝트로, 결혼식 초대장을 감성적으로 전달하는 브랜딩형 서비스.',
+    tags: ['Nuxt 3', 'Vue 3', 'TypeScript', 'Responsive'],
     features: [
-      'Zoom 클론 코딩',
+      '모바일 친화적인 청첩장 레이아웃 구성',
+      '감성적인 브랜딩 UI와 초대 문구 중심 디자인',
+      '반응형 페이지로 모바일 사용자 경험 최적화',
     ],
+    role: '프론트엔드 구현 및 모바일 중심 UX 설계 참여',
   },
   {
     name: 'selLF',
@@ -298,6 +337,10 @@ onUnmounted(() => {
   border-color: var(--accent);
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
+}
+.feat-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .feat-card__header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }

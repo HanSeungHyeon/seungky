@@ -13,17 +13,29 @@
             편하게 연락해 주세요.
           </p>
           <div class="contact__links">
-            <a
-              v-for="link in links"
-              :key="link.label"
-              :href="link.href"
-              :target="link.external ? '_blank' : undefined"
-              class="contact__link"
-            >
-              <span class="contact__link-label">{{ link.label }}</span>
-              <span class="contact__link-sep">·</span>
-              <span class="contact__link-text">{{ link.text }}</span>
-            </a>
+            <template v-for="link in links" :key="link.label">
+              <button
+                v-if="link.copy"
+                type="button"
+                class="contact__link contact__link--copy"
+                @click="copyEmail(link.text)"
+              >
+                <span class="contact__link-label">{{ link.label }}</span>
+                <span class="contact__link-sep">·</span>
+                <span class="contact__link-text">{{ link.text }}</span>
+                <span class="contact__link-copied" :class="{ show: copied }">{{ copied ? '복사됨!' : '클릭하면 복사' }}</span>
+              </button>
+              <a
+                v-else
+                :href="link.href"
+                :target="link.external ? '_blank' : undefined"
+                class="contact__link"
+              >
+                <span class="contact__link-label">{{ link.label }}</span>
+                <span class="contact__link-sep">·</span>
+                <span class="contact__link-text">{{ link.text }}</span>
+              </a>
+            </template>
           </div>
         </div>
 
@@ -57,12 +69,32 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const sectionRef = ref(null)
 const visible = ref(false)
+const copied = ref(false)
 
 const links = [
-  { icon: '✉', label: 'Email', text: 'tmdgus4720@naver.com' },
-  { icon: '⟨/⟩', label: 'GitHub', text: 'github.com/hanseunghyeon', href: 'https://github.com/hanseunghyeon', external: true },
-  { icon: 'V', label: 'velog', text: 'velog.io/@tmdgus4720/posts', href: 'https://velog.io/@tmdgus4720/posts', external: true },
+  { label: 'Email', text: 'tmdgus4720@naver.com', copy: true },
+  { label: 'GitHub', text: 'github.com/hanseunghyeon', href: 'https://github.com/hanseunghyeon', external: true },
+  { label: 'velog', text: 'velog.io/@tmdgus4720/posts', href: 'https://velog.io/@tmdgus4720/posts', external: true },
 ]
+
+let copiedTimer
+async function copyEmail(email) {
+  try {
+    await navigator.clipboard.writeText(email)
+  } catch {
+    const ta = document.createElement('textarea')
+    ta.value = email
+    ta.style.position = 'fixed'
+    ta.style.opacity = '0'
+    document.body.appendChild(ta)
+    ta.select()
+    document.execCommand('copy')
+    document.body.removeChild(ta)
+  }
+  copied.value = true
+  clearTimeout(copiedTimer)
+  copiedTimer = setTimeout(() => { copied.value = false }, 1600)
+}
 
 let observer
 onMounted(() => {
@@ -72,7 +104,10 @@ onMounted(() => {
   )
   if (sectionRef.value) observer.observe(sectionRef.value)
 })
-onUnmounted(() => observer?.disconnect())
+onUnmounted(() => {
+  observer?.disconnect()
+  clearTimeout(copiedTimer)
+})
 </script>
 
 <style scoped>
@@ -138,6 +173,35 @@ onUnmounted(() => observer?.disconnect())
 
 .contact__link:hover {
   color: var(--accent);
+}
+
+.contact__link--copy {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.contact__link-copied {
+  margin-left: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.contact__link--copy:hover .contact__link-copied,
+.contact__link-copied.show {
+  opacity: 1;
+}
+
+.contact__link-copied.show {
+  color: var(--green);
 }
 
 .contact__link-label {
