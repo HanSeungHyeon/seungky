@@ -154,7 +154,7 @@ const companyProjects = [
     period: '2025',
     link: 'https://raporapo.com',
     desc: '게이미케이션 교육 플랫폼.',
-    tags: ['Spring', 'Vue', 'Node.js', 'AWS EC2', 'AWS S3'],
+    tags: ['Spring', 'Vue', 'Node.js', 'EC2', 'S3', 'KG 이니시스'],
     features: [
       '콘텐츠 에디터',
       'QR게임, OX게임, 주사위게임',
@@ -242,7 +242,7 @@ const sideProjects = [
       { src: `${import.meta.env.BASE_URL}project/DA_2.png`, alt: 'Detail Auto 프로젝트 화면 2' },
     ],
     desc: '상품 정보와 이미지를 바탕으로 AI 상품 상세 페이지 구성을 돕도록 설계한 웹 앱입니다.',
-    tags: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS 4', 'shadcn/ui', 'Zustand', 'Supabase', 'Groq'],
+    tags: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS 4', 'Supabase', 'Groq'],
     features: [
       '뷰티·패션·리빙·테크 샘플 콘텐츠 및 상세 페이지 UI',
       '이미지 업로드와 상품명, 타깃, 가격, 할인율, 판매 포인트 입력 폼',
@@ -263,7 +263,7 @@ const sideProjects = [
       { src: `${import.meta.env.BASE_URL}project/WAU_2.png`, alt: '와유 프로젝트 화면 2' },
     ],
     desc: '모바일 청첩장 웹 프로젝트로, 결혼식 초대장을 감성적으로 전달하는 브랜딩형 서비스.',
-    tags: ['Nuxt 3', 'Vue 3', 'TypeScript', 'Responsive'],
+    tags: ['Nuxt 3', 'Vue 3', 'TypeScript'],
     features: [
       '모바일 친화적인 청첩장 레이아웃 구성',
       '감성적인 브랜딩 UI와 초대 문구 중심 디자인',
