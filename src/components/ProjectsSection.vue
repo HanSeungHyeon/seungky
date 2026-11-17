@@ -75,7 +75,17 @@
             <div class="modal__tags">
               <span v-for="t in modal.tags" :key="t" class="modal__tag">{{ t }}</span>
             </div>
-            <div v-if="modal.images?.length" class="modal__gallery" aria-label="프로젝트 이미지">
+            <button
+              v-if="modal.images?.length"
+              class="modal__image-toggle"
+              type="button"
+              :aria-expanded="showImages"
+              aria-controls="project-images"
+              @click="showImages = !showImages"
+            >
+              {{ showImages ? '이미지 숨기기' : `이미지 보기 (${modal.images.length})` }}
+            </button>
+            <div v-if="showImages && modal.images?.length" id="project-images" class="modal__gallery" aria-label="프로젝트 이미지">
               <img
                 v-for="image in modal.images"
                 :key="image.src"
@@ -110,6 +120,16 @@
               >
                 {{ store.label }}
               </a>
+              <a
+                v-for="resource in modal.resourceLinks || []"
+                :key="resource.label"
+                :href="resource.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="modal__btn"
+              >
+                {{ resource.label }}
+              </a>
             </div>
           </div>
         </div>
@@ -124,14 +144,17 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const sectionRef  = ref(null)
 const visible     = ref(false)
 const modal       = ref(null)
+const showImages  = ref(false)
 
 function openModal(project) {
   modal.value = project
+  showImages.value = false
   document.body.style.overflow = 'hidden'
 }
 
 function closeModal() {
   modal.value = null
+  showImages.value = false
   document.body.style.overflow = ''
 }
 
@@ -225,8 +248,8 @@ const sideProjects = [
     period: '2026',
     link: 'https://github.com/HanSeungHyeon/detail-auto',
     images: [
-      { src: '/project/DA_1.png', alt: 'Detail Auto 프로젝트 화면 1' },
-      { src: '/project/DA_2.png', alt: 'Detail Auto 프로젝트 화면 2' },
+      { src: `${import.meta.env.BASE_URL}project/DA_1.png`, alt: 'Detail Auto 프로젝트 화면 1' },
+      { src: `${import.meta.env.BASE_URL}project/DA_2.png`, alt: 'Detail Auto 프로젝트 화면 2' },
     ],
     desc: '상품 정보와 이미지를 바탕으로 AI 상품 상세 페이지 구성을 돕도록 설계한 웹 앱입니다.',
     tags: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS 4', 'shadcn/ui', 'Zustand', 'Supabase', 'Groq'],
@@ -245,6 +268,10 @@ const sideProjects = [
     name: '와유(WAU)',
     period: '2025',
     link: 'https://github.com/HanSeungHyeon/wau',
+    images: [
+      { src: `${import.meta.env.BASE_URL}project/WAU_1.png`, alt: '와유 프로젝트 화면 1' },
+      { src: `${import.meta.env.BASE_URL}project/WAU_2.png`, alt: '와유 프로젝트 화면 2' },
+    ],
     desc: '모바일 청첩장 웹 프로젝트로, 결혼식 초대장을 감성적으로 전달하는 브랜딩형 서비스.',
     tags: ['Nuxt 3', 'Vue 3', 'TypeScript', 'Responsive'],
     features: [
@@ -258,6 +285,9 @@ const sideProjects = [
     name: 'selLF',
     period: '2024',
     link: 'https://github.com/HanSeungHyeon/selLf',
+    resourceLinks: [
+      { label: '프로젝트 문서 보기', url: 'https://docs.google.com/spreadsheets/d/1KZRKomRKqUI0GLgN12fYK78jjTgAboOPprxUykJ4vw4/edit?usp=sharing' },
+    ],
     desc: '프로젝트 포트폴리오를 게시하고 방문자가 카테고리별로 살펴볼 수 있도록 만든 Spring Boot 기반 웹 서비스입니다.',
     tags: ['Java 8', 'Spring Boot 2.6', 'Spring MVC', 'Thymeleaf', 'MyBatis', 'PostgreSQL', 'Firebase FCM', 'PWA'],
     features: [
@@ -459,6 +489,27 @@ onUnmounted(() => {
   flex-direction: column;
   gap: 16px;
   margin-bottom: 28px;
+}
+
+.modal__image-toggle {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 24px;
+  padding: 9px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--accent);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+
+.modal__image-toggle:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
 }
 
 .modal__image {
