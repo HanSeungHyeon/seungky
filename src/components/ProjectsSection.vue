@@ -130,16 +130,19 @@ const companyProjects = [
   {
     name: '라포라포(RAPORAPO)',
     period: '2025',
-    link: '#',
+    link: 'https://raporapo.com',
     desc: '게이미케이션 교육 플랫폼.',
-    tags: ['Spring', 'Vue', 'Node.js', 'AWS'],
+    tags: ['Spring', 'Vue', 'Node.js', 'AWS EC2', 'AWS S3'],
     features: [
       '콘텐츠 에디터',
       'QR게임, OX게임, 주사위게임',
       '관리자 대시보드',
-      'https://raporapo.com',
+      '회원 관리 및 결제 기능',
+      '캐시 기반 이벤트 감지 및 특정 캐시 대상 이벤트 처리',
+      '구독 알림 이메일 발송',
+      'AWS EC2·S3 활용',
     ],
-    role: '관리자 대시보드, 결제 기능, 기억력게임 개발',
+    role: '관리자 대시보드와 결제·회원 관리 기능, 캐시 기반 이벤트 처리 및 구독 알림 메일을 개발했습니다.',
   },
   {
     name: '코오롱 해킹메일 모의 훈련',
@@ -149,12 +152,13 @@ const companyProjects = [
     tags: ['Spring', 'Oracle', 'Tomcat', 'Linux'],
     features: [
       '사용자 관리 (인사 연동)',
-      '메일 훈련 (메일 발송, 결과 통계)',
-      '보안 교육 시스템 (pdf, mp4)',
-      '보안 시험 시스템',
+      '외부망·내부망 해킹메일 훈련 메일 발송',
+      '프록시 서버를 통한 훈련 정보 수집',
+      '보안 교육, 시험 시스템 (pdf, mp4)',
+      '훈련·시험·교육 결과 통계 및 엑셀 다운로드',
       '관리자 대시보드',
     ],
-    role: '환경 구축, 솔루션 커스터마이징, 프로젝트 관리 담당',
+    role: '환경 구축과 솔루션 커스터마이징을 담당하고, 메일 훈련·시험·교육 결과 통계 및 엑셀 다운로드 기능을 구현했습니다.',
   },
   {
     name: '경동 ERP 시스템',
@@ -175,7 +179,7 @@ const companyProjects = [
     period: '2022',
     link: '#',
     desc: '보안장비, IP, 방화벽 등 외교부 내 정보보안 시스템 관리자 대시보드.',
-    tags: ['Spring', 'Maria DB', 'JSP', 'Linux',],
+    tags: ['Spring', 'Maria DB', 'JSP', 'Linux'],
     features: [
       '보안장비(pc, 복사기, 노트북) 관리',
       'IP, 방화벽, 망점점, 차단사이트, pc신청',
@@ -183,7 +187,7 @@ const companyProjects = [
       '알림메일 발송',
       '결재 시스템 구축',
     ],
-    role: 'Spring 백엔드 아키텍처 설계 및 API 개발 담당',
+    role: 'Spring 백엔드 아키텍처 설계 및 API 개발을 담당하고, 클라이언트 응대와 기술 미팅에서의 의견 조율, 프로젝트 관리도 수행했습니다.',
   },
 ]
 
