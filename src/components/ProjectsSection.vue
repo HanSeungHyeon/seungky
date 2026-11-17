@@ -91,6 +91,16 @@
               <a v-if="modal.link && modal.link !== '#'" :href="modal.link" target="_blank" class="modal__btn">
                 {{ modal.link.includes('github.com') ? 'GitHub에서 보기 →' : '프로젝트 보기 →' }}
               </a>
+              <a
+                v-for="store in modal.storeLinks || []"
+                :key="store.label"
+                :href="store.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="modal__btn"
+              >
+                {{ store.label }}
+              </a>
             </div>
           </div>
         </div>
@@ -182,6 +192,10 @@ const sideProjects = [
     name: '미니언(MINION)',
     period: '2026',
     link: 'https://minion.fan',
+    storeLinks: [
+      { label: 'Google Play', url: 'https://play.google.com/store/apps/details?id=com.minion.app' },
+      { label: 'App Store', url: 'https://apps.apple.com/kr/app/minion/id6826082325' },
+    ],
     desc: 'LCK 경기 일정·기록부터 팬 소통까지 한곳에 모은 e스포츠 팬 커뮤니티 플랫폼. 웹과 앱을 함께 운영하는 멀티 플랫폼 서비스입니다.',
     tags: ['Next.js', 'React', 'TypeScript', 'Supabase', 'Expo'],
     features: [
@@ -463,6 +477,9 @@ onUnmounted(() => {
 }
 
 .modal__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
   padding-top: 20px;
   border-top: 1px solid var(--border);
 }
