@@ -134,14 +134,17 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const sectionRef  = ref(null)
 const visible     = ref(false)
 const modal       = ref(null)
+const showImages  = ref(false)
 
 function openModal(project) {
   modal.value = project
+  showImages.value = false
   document.body.style.overflow = 'hidden'
 }
 
 function closeModal() {
   modal.value = null
+  showImages.value = false
   document.body.style.overflow = ''
 }
 
@@ -234,6 +237,10 @@ const sideProjects = [
     name: 'DA (detail-auto)',
     period: '2026',
     link: 'https://github.com/HanSeungHyeon/detail-auto',
+    images: [
+      { src: `${import.meta.env.BASE_URL}project/DA_1.png`, alt: 'Detail Auto 프로젝트 화면 1' },
+      { src: `${import.meta.env.BASE_URL}project/DA_2.png`, alt: 'Detail Auto 프로젝트 화면 2' },
+    ],
     desc: '상품 정보와 이미지를 바탕으로 AI 상품 상세 페이지 구성을 돕도록 설계한 웹 앱입니다.',
     tags: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS 4', 'shadcn/ui', 'Zustand', 'Supabase', 'Groq'],
     features: [
@@ -251,6 +258,10 @@ const sideProjects = [
     name: '와유(WAU)',
     period: '2025',
     link: 'https://github.com/HanSeungHyeon/wau',
+    images: [
+      { src: `${import.meta.env.BASE_URL}project/WAU_1.png`, alt: '와유 프로젝트 화면 1' },
+      { src: `${import.meta.env.BASE_URL}project/WAU_2.png`, alt: '와유 프로젝트 화면 2' },
+    ],
     desc: '모바일 청첩장 웹 프로젝트로, 결혼식 초대장을 감성적으로 전달하는 브랜딩형 서비스.',
     tags: ['Nuxt 3', 'Vue 3', 'TypeScript', 'Responsive'],
     features: [
