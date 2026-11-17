@@ -242,7 +242,7 @@ const sideProjects = [
       { src: `${import.meta.env.BASE_URL}project/DA_2.png`, alt: 'Detail Auto 프로젝트 화면 2' },
     ],
     desc: '상품 정보와 이미지를 바탕으로 AI 상품 상세 페이지 구성을 돕도록 설계한 웹 앱입니다.',
-    tags: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS 4', 'Supabase', 'Groq'],
+    tags: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS 4', 'Supabase'],
     features: [
       '뷰티·패션·리빙·테크 샘플 콘텐츠 및 상세 페이지 UI',
       '이미지 업로드와 상품명, 타깃, 가격, 할인율, 판매 포인트 입력 폼',
