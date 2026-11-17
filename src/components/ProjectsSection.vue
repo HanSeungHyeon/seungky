@@ -75,6 +75,15 @@
             <div class="modal__tags">
               <span v-for="t in modal.tags" :key="t" class="modal__tag">{{ t }}</span>
             </div>
+            <div v-if="modal.images?.length" class="modal__gallery" aria-label="프로젝트 이미지">
+              <img
+                v-for="image in modal.images"
+                :key="image.src"
+                :src="image.src"
+                :alt="image.alt"
+                class="modal__image"
+              />
+            </div>
             <div class="modal__body">
               <h4 class="modal__subtitle">프로젝트 소개</h4>
               <p>{{ modal.desc }}</p>
@@ -215,6 +224,10 @@ const sideProjects = [
     name: 'DA (detail-auto)',
     period: '2026',
     link: 'https://github.com/HanSeungHyeon/detail-auto',
+    images: [
+      { src: '/project/DA_1.png', alt: 'Detail Auto 프로젝트 화면 1' },
+      { src: '/project/DA_2.png', alt: 'Detail Auto 프로젝트 화면 2' },
+    ],
     desc: '상품 정보와 이미지를 바탕으로 AI 상품 상세 페이지 구성을 돕도록 설계한 웹 앱입니다.',
     tags: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS 4', 'shadcn/ui', 'Zustand', 'Supabase', 'Groq'],
     features: [
@@ -246,13 +259,14 @@ const sideProjects = [
     period: '2024',
     link: 'https://github.com/HanSeungHyeon/selLf',
     desc: '프로젝트 포트폴리오를 게시하고 방문자가 카테고리별로 살펴볼 수 있도록 만든 Spring Boot 기반 웹 서비스입니다.',
-    tags: ['Java 8', 'Spring Boot 2.6', 'Spring MVC', 'Thymeleaf', 'MyBatis', 'PostgreSQL', 'Firebase FCM'],
+    tags: ['Java 8', 'Spring Boot 2.6', 'Spring MVC', 'Thymeleaf', 'MyBatis', 'PostgreSQL', 'Firebase FCM', 'PWA'],
     features: [
       '프로젝트 게시글 목록과 카테고리 필터 제공',
       '게시글 상세 조회, 작성, 수정, 삭제 기능',
       '회원가입, 로그인, 계정 정보 찾기 및 수정',
       '문의 양식을 통한 이메일 발송',
       '이미지 업로드와 출력',
+      'PWA 지원 및 앱 아이콘·오프라인 화면 구성',
       'Firebase Cloud Messaging 기반 브라우저 알림 구독 및 관리자 알림 발송',
       '관리자 메뉴와 /admin 경로 접근 제어',
     ],
@@ -438,6 +452,21 @@ onUnmounted(() => {
   font-family: var(--font-mono); font-size: 12px;
   color: var(--accent); background: var(--accent-light);
   padding: 4px 12px; border-radius: 99px;
+}
+
+.modal__gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.modal__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
 }
 
 .modal__body { margin-bottom: 28px; }
