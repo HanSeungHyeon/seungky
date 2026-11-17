@@ -120,16 +120,6 @@
               >
                 {{ store.label }}
               </a>
-              <a
-                v-for="resource in modal.resourceLinks || []"
-                :key="resource.label"
-                :href="resource.url"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="modal__btn"
-              >
-                {{ resource.label }}
-              </a>
             </div>
           </div>
         </div>
@@ -144,17 +134,14 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const sectionRef  = ref(null)
 const visible     = ref(false)
 const modal       = ref(null)
-const showImages  = ref(false)
 
 function openModal(project) {
   modal.value = project
-  showImages.value = false
   document.body.style.overflow = 'hidden'
 }
 
 function closeModal() {
   modal.value = null
-  showImages.value = false
   document.body.style.overflow = ''
 }
 
@@ -174,7 +161,7 @@ const companyProjects = [
       '구독 알림 이메일 발송',
       'AWS EC2·S3 활용',
     ],
-    role: '관리자 대시보드와 결제·회원 관리 기능, 캐시 기반 이벤트 처리 및 구독 알림 메일을 개발했습니다.',
+    role: '관리자 대시보드와 결제·회원 관리 기능, 캐시 기반 이벤트 처리를 개발했습니다.',
   },
   {
     name: '코오롱 해킹메일 모의 훈련',
@@ -247,10 +234,6 @@ const sideProjects = [
     name: 'DA (detail-auto)',
     period: '2026',
     link: 'https://github.com/HanSeungHyeon/detail-auto',
-    images: [
-      { src: `${import.meta.env.BASE_URL}project/DA_1.png`, alt: 'Detail Auto 프로젝트 화면 1' },
-      { src: `${import.meta.env.BASE_URL}project/DA_2.png`, alt: 'Detail Auto 프로젝트 화면 2' },
-    ],
     desc: '상품 정보와 이미지를 바탕으로 AI 상품 상세 페이지 구성을 돕도록 설계한 웹 앱입니다.',
     tags: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS 4', 'shadcn/ui', 'Zustand', 'Supabase', 'Groq'],
     features: [
@@ -268,10 +251,6 @@ const sideProjects = [
     name: '와유(WAU)',
     period: '2025',
     link: 'https://github.com/HanSeungHyeon/wau',
-    images: [
-      { src: `${import.meta.env.BASE_URL}project/WAU_1.png`, alt: '와유 프로젝트 화면 1' },
-      { src: `${import.meta.env.BASE_URL}project/WAU_2.png`, alt: '와유 프로젝트 화면 2' },
-    ],
     desc: '모바일 청첩장 웹 프로젝트로, 결혼식 초대장을 감성적으로 전달하는 브랜딩형 서비스.',
     tags: ['Nuxt 3', 'Vue 3', 'TypeScript', 'Responsive'],
     features: [
@@ -285,18 +264,14 @@ const sideProjects = [
     name: 'selLF',
     period: '2024',
     link: 'https://github.com/HanSeungHyeon/selLf',
-    resourceLinks: [
-      { label: '프로젝트 문서 보기', url: 'https://docs.google.com/spreadsheets/d/1KZRKomRKqUI0GLgN12fYK78jjTgAboOPprxUykJ4vw4/edit?usp=sharing' },
-    ],
     desc: '프로젝트 포트폴리오를 게시하고 방문자가 카테고리별로 살펴볼 수 있도록 만든 Spring Boot 기반 웹 서비스입니다.',
-    tags: ['Java 8', 'Spring Boot 2.6', 'Spring MVC', 'Thymeleaf', 'MyBatis', 'PostgreSQL', 'Firebase FCM', 'PWA'],
+    tags: ['Java 8', 'Spring Boot 2.6', 'Spring MVC', 'Thymeleaf', 'MyBatis', 'PostgreSQL', 'Firebase FCM'],
     features: [
       '프로젝트 게시글 목록과 카테고리 필터 제공',
       '게시글 상세 조회, 작성, 수정, 삭제 기능',
       '회원가입, 로그인, 계정 정보 찾기 및 수정',
       '문의 양식을 통한 이메일 발송',
       '이미지 업로드와 출력',
-      'PWA 지원 및 앱 아이콘·오프라인 화면 구성',
       'Firebase Cloud Messaging 기반 브라우저 알림 구독 및 관리자 알림 발송',
       '관리자 메뉴와 /admin 경로 접근 제어',
     ],
@@ -482,42 +457,6 @@ onUnmounted(() => {
   font-family: var(--font-mono); font-size: 12px;
   color: var(--accent); background: var(--accent-light);
   padding: 4px 12px; border-radius: 99px;
-}
-
-.modal__gallery {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 28px;
-}
-
-.modal__image-toggle {
-  display: inline-flex;
-  align-items: center;
-  margin: 0 0 24px;
-  padding: 9px 14px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--surface);
-  color: var(--accent);
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background .2s, border-color .2s;
-}
-
-.modal__image-toggle:hover {
-  background: var(--accent-light);
-  border-color: var(--accent);
-}
-
-.modal__image {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
 }
 
 .modal__body { margin-bottom: 28px; }
