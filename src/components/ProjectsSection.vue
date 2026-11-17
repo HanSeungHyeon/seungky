@@ -211,7 +211,7 @@ const sideProjects = [
     name: 'DA (detail-auto)',
     period: '2026',
     link: 'https://github.com/HanSeungHyeon/detail-auto',
-    desc: '상품 정보와 이미지를 바탕으로 AI 상품 상세 페이지 구성을 돕도록 설계한 웹 앱입니다. 샘플 탐색, 작성 폼, 대시보드와 결과 화면 UI를 구현했으며 인증·저장·생성 서버 액션은 준비 중입니다.',
+    desc: '상품 정보와 이미지를 바탕으로 AI 상품 상세 페이지 구성을 돕도록 설계한 웹 앱입니다.',
     tags: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS 4', 'shadcn/ui', 'Zustand', 'Supabase', 'Groq'],
     features: [
       '뷰티·패션·리빙·테크 샘플 콘텐츠 및 상세 페이지 UI',
@@ -241,7 +241,7 @@ const sideProjects = [
     name: 'selLF',
     period: '2024',
     link: 'https://github.com/HanSeungHyeon/selLf',
-    desc: '프로젝트 포트폴리오를 게시하고 방문자가 카테고리별로 살펴볼 수 있도록 만든 Spring Boot 기반 웹 서비스입니다. 프로젝트 목록과 소개·이력·문의 페이지, 회원 및 게시판 기능을 구현했습니다.',
+    desc: '프로젝트 포트폴리오를 게시하고 방문자가 카테고리별로 살펴볼 수 있도록 만든 Spring Boot 기반 웹 서비스입니다.',
     tags: ['Java 8', 'Spring Boot 2.6', 'Spring MVC', 'Thymeleaf', 'MyBatis', 'PostgreSQL', 'Firebase FCM'],
     features: [
       '프로젝트 게시글 목록과 카테고리 필터 제공',
