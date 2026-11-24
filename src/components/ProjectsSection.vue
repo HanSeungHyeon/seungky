@@ -222,7 +222,7 @@ const sideProjects = [
       { label: 'Google Play', url: 'https://play.google.com/store/apps/details?id=com.minion.app' },
       { label: 'App Store', url: 'https://apps.apple.com/kr/app/minion/id6826082325' },
     ],
-    desc: 'LCK 경기 일정·기록부터 팬 소통까지 한곳에 모은 e스포츠 팬 커뮤니티 플랫폼. 웹과 앱을 함께 운영하는 멀티 플랫폼 서비스입니다.',
+    desc: 'LCK 경기 일정·기록부터 팬 소통까지 한곳에 모은 e스포츠 팬 커뮤니티 플랫폼입니다. 하루 최고 방문자 수 18,698명과 회원 수 67명을 기록했으며, 웹과 앱을 함께 운영하고 있습니다.',
     tags: ['Next.js', 'React', 'TypeScript', 'Supabase', 'Expo'],
     features: [
       'LCK 경기 일정·플레이오프 대진표·승부 예측 제공',
